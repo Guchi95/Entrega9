@@ -1,0 +1,27 @@
+{
+  "name": "sockets",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "@faker-js/faker": "^6.0.0-alpha.6",
+    "express": "^4.17.2",
+    "express-handlebars": "^6.0.2",
+    "faker": "^6.6.6",
+    "faker-js": "^1.0.0",
+    "handlebars": "^4.7.7",
+    "knex": "^0.95.15",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.15",
+    "socket.io": "^4.4.1",
+    "sqlite3": "^5.0.2"
+  },
+  "scripts": {
+    "server": "nodemon main.js",
+    "MariaDB": "node ./bd/createSchemaProducts.js",
+    "Sqlite3": "node ./bd/createSchemaMessages.js",
+    "test": "echo \"Error: no test specified\" && exit 1 "
+  },
+  "keywords": [],
+  "author": "Coderhouse",
+  "license": "ISC"
+}

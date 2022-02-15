@@ -1,0 +1,50 @@
+<div class='container'>
+
+
+    <table id='table' class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Photo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#if productos.length }}
+            {{#each productos}}
+            <tr>
+                <th scope="row">{{this.id}}</th>
+                <td>{{this.title}}</td>
+                <td>{{this.price}}</td>
+                <td><img style='max-height:30px;' class="img-fluid" src={{this.thumbnail}} alt=""></td>
+            </tr>
+            {{/each}}
+            {{else}}
+
+            <div align='center' class="alert alert-warning" role="alert">
+                No hay productos wachin
+            </div>
+            {{/if}}
+
+        </tbody>
+        
+    </table>
+ <div class="container">
+      <h3> Centro de Mensajes</h3>
+      <br>
+      <br>
+      <ul id="messages"></ul>
+      <form id="form">
+        <input type="email" id="email" placeholder="Enter e-mail to start chatting" required>
+        <input id="input" autocomplete="off" /><button>Send</button>
+      </form>
+      <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"
+        integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh"
+        crossorigin="anonymous"></script>
+      <script src="/js/chat.js"></script>
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="/js/table.js"></script>
+    </div>
+
+</div>

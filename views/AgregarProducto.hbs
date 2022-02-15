@@ -1,0 +1,49 @@
+<div class='container'>
+    <h3>Agregar Producto</h3>
+    <form id='AgregarProducto'>
+        <div class="form-group">
+            <label for="ProductTitle">Title</label>
+            <input type="text" class="form-control" id="ProductTitle" placeholder="Enter product name">
+
+        </div>
+        <div class="form-group">
+            <label for="Price">Price</label>
+            <input type="number" class="form-control" id="Price" placeholder="Enter product price">
+        </div>
+        <div class="form-group">
+            <label for="Thumbnail">Thumbnail</label>
+            <input type="text" class="form-control" id="Thumbnail" placeholder="Enter product Thumbnail">
+
+        </div>
+        <br>
+        <button class="btn btn-dark" onclick="sendProducto()" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+    {{> listproductos this}}
+</div>
+
+
+
+<script>
+    var form = document.getElementById("AgregarProducto");
+    function handleForm(event) { event.preventDefault(); }
+    form.addEventListener('submit', handleForm);
+
+    function sendProducto() {
+        var data = {
+            title: document.getElementById("ProductTitle").value,
+            price: document.getElementById("Price").value,
+            thumbnail: document.getElementById("Thumbnail").value
+        }
+        fetch("/api/productos", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        }).then(res => {
+            document.getElementById("ProductTitle").value = "",
+                document.getElementById("Price").value = "",
+                document.getElementById("Thumbnail").value = "";
+        });
+
+    }
+</script>
