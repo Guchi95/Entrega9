@@ -1,0 +1,25 @@
+<div class='container'>
+
+    <table id='table' class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Product Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Photo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#if productos.length }}
+            {{#each productos}}
+            <tr>
+                <td>{{this.title}}</td>
+                <td>{{this.price}}</td>
+                <td><img style='max-height:30px;' class="img-fluid" src={{this.photo}} alt=""></td>
+            </tr>
+            {{/each}}
+            {{/if}}
+        </tbody>
+    </table>
+    </div>
+
+</div>

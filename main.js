@@ -124,29 +124,36 @@ router.post('/chat', (req, res) => {
 })
 
 //------------------------------FAKER--------------------------------------------------//
+
 const faker = require('@faker-js/faker/locale/es')
-const {name, internet, random } = faker
+const { name, commerce, image, random } = faker;
 
-router.post('/productos-test', (req, res) => {
-    try {
-        let str = 'TITLE;PRICE;THUMBNAIL'
+app.get('/productos-test', (req, res) => {
+    res.render('./partials/productos-test', { layout: 'index', productos: generarNProductos(5)})
+});
 
-        for (let i = 0; i > 5; i++) {   
-            str += name.firstName() +
-            ';' + internet.email() +
-            ';' + random.locale() +
-            '\n'
-        }
-        console.log(str);
-        /*  knex('products').insert(str)
-        .then(() => console.log('Data Inserted'))
-        .catch((err) => { console.log(err); throw err}) */
-        } catch (err) {
-        console.log("No se pudo guardar el producto por el motivo " + JSON.stringify(err));
+app.get('/api/productos-test', (req, res) => {
+    const cant = Number(req.query.cant) || CANT_PROD_DEFAULT
+    res.json(generarNProductos(cant))
+ });
+ 
+
+function crearProductosAlAzar() {
+    return {
+    title: faker.commerce.productName(),
+    price: faker.commerce.price(),
+    photo: `${faker.image.food()}?random=${Math.round(Math.random() * 1000)}`
     }
-    res.send()
-})
+}    
 
+function generarNProductos(cant) {
+    const productos = []
+    for (let i = 0; i < cant; i++) {
+        productos.push(crearProductosAlAzar())
+    }
+    return productos
+}
 
+const CANT_PROD_DEFAULT = 5
 
 
